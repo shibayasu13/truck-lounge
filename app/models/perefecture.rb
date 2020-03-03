@@ -1,0 +1,2 @@
+class Perefecture < ApplicationRecord
+end

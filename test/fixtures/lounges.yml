@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  guest_id: 1
+  prefecture_id: 1
+  adress: MyString
+  latitude: 1.5
+  longtude: 1.5
+  business_hours: MyString
+  store_name: MyText
+  parking: MyText
+  bath_time: MyString
+  content: 1
+
+two:
+  guest_id: 1
+  prefecture_id: 1
+  adress: MyString
+  latitude: 1.5
+  longtude: 1.5
+  business_hours: MyString
+  store_name: MyText
+  parking: MyText
+  bath_time: MyString
+  content: 1
