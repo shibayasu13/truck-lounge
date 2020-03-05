@@ -9,7 +9,73 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+      <div id="container">
+            <header class="navbar navar-fixed-top">
+                <nav class="nav navbar-nav navbar-left">
+                    <h1><%= link_to "TruckLounge",root_path %></h1>
+                </nav>
+                <nav>
+                  <ul class="nav navbar-nav navbar-right">
+                    <% if guest_signed_in? %>
+                    <nav class="nav navbar-nav navar-center">
+                      <li class="center">
+                        <%= link_to "検索画面"%>
+                     </li>
+                    </nav>
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="">
+                        <%= link_to "マイページ", guest_path(current_guest.id) %>
+                      </li>
+                      <li class="" >
+                        <%= link_to "ログアウト",destroy_guest_session_path, method: :delete %>
+                      </li>
+                      <li class="">
+                        <%= link_to "店舗情報新規登録", new_guest_lounge_path %>
+                      </li>
+                      <li class="">
+                        <%= link_to "全国店舗情報一覧", guest_lounges_path %>
+                      </li>
+                    </ul>
+                      <% elsif admin_signed_in? %>
+                      <li class="">
+                        <%= link_to "商品一覧",admin_products_path %>
+                      </li>
+                      <li class="" >
+                        <%= link_to "会員一覧", admin_guests_path %>
+                      </li>
+                      <li class="">
+                        <%= link_to "注文商品一覧", admin_orders_path %>
+                      </li>
+                      <li class="">
+                        <%= link_to "ジャンル管理", admin_genres_path %>
+                      </li>
+                      <li class="">
+                        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+                      </li>
+                    <% else %>
+                    <nav class="nav navbar-nav navar-center">
+                      <li class="center">
+                        <%= link_to "検索画面"%>
+                        <%= link_to "商品一覧" %>
+                      </li>
+                    </nav>
+                      <li>
+                        <%= link_to "ログイン", new_guest_session_path %>
+                      </li>
+                      <li>
+                        <%= link_to "アバウト" %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </nav>
+            </div>
+          </header>
+      </div>
+  <main>
+
+      <%= content_for?(:content) ? yield(:content) : yield %>
+  </main>
+    <footer></footer>
+
 </html>

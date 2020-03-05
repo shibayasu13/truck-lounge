@@ -1,0 +1,20 @@
+<h1>マイページ</h1>
+<table>
+	<caption></caption>
+	<thead>
+		<tr>ゲスト情報</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= attachment_image_tag @guest, :profile_image, :fill,60,60, format: 'jpeg' %></td>
+		</tr>
+		<tr>
+			<td><%= @guest.name %></td>
+		</tr>
+		<tr>
+			<td><%= @guest.car %></td>
+		</tr>
+	</tbody>
+</table>
+
+<%= link_to "編集する", edit_guest_path %>

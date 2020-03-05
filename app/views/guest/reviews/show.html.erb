@@ -1,0 +1,16 @@
+<h1>レビュー詳細画面</h1>
+<table>
+	<tr>
+		<th>店舗名</th>
+		<td><%= @review.lounge.store_name %></td>
+	</tr>
+	<tr>
+		<th>レビュー</th>
+		<td><%= @review.explanation %></td>
+	</tr>
+	<tr>
+		<th>レビュー画像</th>
+		<td><%= attachment_image_tag @review, :review_image, :fill,60,60, format: 'jpeg' %></td>
+	</tr>
+</table>
+<%= link_to "編集する", edit_guest_review_path %>
