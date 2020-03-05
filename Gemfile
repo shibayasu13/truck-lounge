@@ -66,3 +66,5 @@ gem 'jquery-rails'
 gem 'paranoia'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'

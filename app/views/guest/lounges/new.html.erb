@@ -1,39 +1,43 @@
-<h1>新規投稿</h1>
-<%= form_for @lounge, url:guest_lounges_path do |f| %>
-<table>
-	<thead>
-		<tr>
-			<th>店舗名</th>
-			<td><%= f.text_field :store_name %></td>
-		</tr>
-		<tr>
-			<th>住所</th>
-			<td><%= f.text_field :adress %></td>
-		</tr>
-		<tr>
-			<th>施設内容</th>
-			<td><%= f.select :content, Lounge.contents.keys %></td>
-		</tr>
-		<tr>
-			<th>店舗画像</th>
-			<td><%= f.attachment_field :store_image %></td>
-		</tr>
-		<tr>
-			<th>駐車場情報</th>
-			<td><%= f.text_area :parking %></td>
-		</tr>
-		<tr>
-			<th>営業時間</th>
-			<td><%= f.text_field :business_hours %></td>
-		</tr>
-		<tr>
-			<th>営業案内</th>
-			<td><%= f.select :busines_status, Lounge.busines_statuses.keys %></td>
-			<%= f.hidden_field :lounge_id, value: @lounge.id %>
- 			<%= f.hidden_field :guest_id, value: @guest %>
-		</tr>
+<div class="container">
+	<div class="row">
+			<h1>新規投稿</h1>
+			<%= form_for @lounge, url:guest_lounges_path do |f| %>
+			<table border="1" rules="rows,groups" class = "table table-striped">
+				<thead>
+					<tr>
+						<th>店舗名</th>
+						<td><%= f.text_field :store_name %></td>
+					</tr>
+					<tr>
+						<th>住所</th>
+						<td><%= f.text_field :adress %></td>
+					</tr>
+					<tr>
+						<th>施設内容</th>
+						<td><%= f.select :content, Lounge.contents.keys %></td>
+					</tr>
+					<tr>
+						<th>店舗画像</th>
+						<td><%= f.attachment_field :store_image %></td>
+					</tr>
+					<tr>
+						<th>駐車場情報</th>
+						<td><%= f.text_area :parking %></td>
+					</tr>
+					<tr>
+						<th>営業時間</th>
+						<td><%= f.text_field :business_hours %></td>
+					</tr>
+					<tr>
+						<th>営業案内</th>
+						<td><%= f.select :busines_status, Lounge.busines_statuses.keys %></td>
+						<%= f.hidden_field :lounge_id, value: @lounge.id %>
+			 			<%= f.hidden_field :guest_id, value: @guest %>
+					</tr>
 
-	</thead>
-</table>
-<%= f.submit '投稿' %>
-<% end %>
+				</thead>
+			</table>
+			<%= f.submit '投稿' %>
+			<% end %>
+	</div>
+</div>

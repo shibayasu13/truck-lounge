@@ -1,6 +1,7 @@
 class GuestsController < ApplicationController
   def show
   	@guest = Guest.find(params[:id])
+    @lounges = Guest.find(params[:id]).lounges
   end
 
   def edit

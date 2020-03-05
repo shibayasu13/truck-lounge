@@ -39,16 +39,16 @@
                     </ul>
                       <% elsif admin_signed_in? %>
                       <li class="">
-                        <%= link_to "商品一覧",admin_products_path %>
+                        <%= link_to "" %>
                       </li>
                       <li class="" >
-                        <%= link_to "会員一覧", admin_guests_path %>
+                        <%= link_to "会員一覧" %>
                       </li>
                       <li class="">
-                        <%= link_to "注文商品一覧", admin_orders_path %>
+                        <%= link_to "" %>
                       </li>
                       <li class="">
-                        <%= link_to "ジャンル管理", admin_genres_path %>
+                        <%= link_to "" %>
                       </li>
                       <li class="">
                         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
