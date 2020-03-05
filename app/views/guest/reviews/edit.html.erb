@@ -1,4 +1,4 @@
-<h1></h1>
+<h1>レビューの編集</h1>
 <%= form_for @review, url:guest_review_path do |f| %>
   <%= f.attachment_field :review_image %>
  <%= f.text_area :explanation %>
@@ -6,3 +6,11 @@
 <% end %>
 <%= link_to "詳細へ戻る", guest_review_path(@review.id) %>/
 <%= link_to "削除する", guest_review_path(@review.id), method: :delete,"data-confirm" => "本当に消しますか" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4">
+
+		</div>
+	</div>
+</div>

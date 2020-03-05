@@ -1,59 +1,76 @@
 <h1>店舗詳細画面</h1>
-<table>
-	<tr>
-		<th>店舗名</th>
-		<td><%= @lounge.store_name %></td>
-	</tr>
-	<tr>
-		<th>住所</th>
-		<td><%= @lounge.adress %></td>
-	</tr>
-	<tr>
-		<th>施設内容</th>
-		<td><%= @lounge.content %></td>
-	</tr>
-	<tr>
-		<th>駐車場情報</th>
-		<td><%= @lounge.parking %></td>
-	</tr>
-	<tr>
-		<th>店舗画像</th>
-		<td><%= attachment_image_tag @lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
-	</tr>
-	<tr>
-		<th>営業案内</th>
-		<td><%= @lounge.busines_status %></td>
-	</tr>
-	<tr>
-		<th>営業時間</th>
-		<td><%= @lounge.business_hours %></td>
-	</tr>
-</table>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4">
+			<table border="1" rules="rows,groups" class = "table table-striped">
+				<tr>
+					<th>店舗名</th>
+					<td><%= @lounge.store_name %></td>
+				</tr>
+				<tr>
+					<th>住所</th>
+					<td><%= @lounge.adress %></td>
+				</tr>
+				<tr>
+					<th>施設内容</th>
+					<td><%= @lounge.content %></td>
+				</tr>
+				<tr>
+					<th>駐車場情報</th>
+					<td><%= @lounge.parking %></td>
+				</tr>
+				<tr>
+					<th>店舗画像</th>
+					<td><%= attachment_image_tag @lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
+				</tr>
+				<tr>
+					<th>営業案内</th>
+					<td><%= @lounge.busines_status %></td>
+				</tr>
+				<tr>
+					<th>営業時間</th>
+					<td><%= @lounge.business_hours %></td>
+				</tr>
+			</table>
+			<%= link_to "編集する", edit_guest_lounge_path(@lounge) %>
+			<%= form_for @review, url:guest_reviews_path(@review.id) do |f| %>
+				<table class="table table-striped">
+					<caption>レビュー新規投稿</caption>
+						<tr>
+							<th>レビュー本文</th>
+							<td><%= f.text_area :explanation %></td>
+						</tr>
+						<tr>
+							<th>レビュー画像</th>
+							<td><%= f.attachment_field :review_image %></td>
+						</tr>
+						<%= f.hidden_field :lounge_id, value: @lounge.id %>
+					 	<%= f.hidden_field :guest_id, value: @guest %>
+				</table>
+				<%= f.hidden_field :lounge_id, value: @lounge.id %>
+				<%= f.hidden_field :guest_id, value: @guest %>
+				<%= f.submit '投稿' %>
+			<% end %>
+		</div>
 
-<%= link_to "編集する", edit_guest_lounge_path(@lounge) %>
-
-<table>
-	<caption>レビュー一覧</caption>
-	<thead>
-		<tr>
-			<th>レビュー</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
+		<div class="col-lg-8">
+		<table class= "table table-striped">
+			<caption>レビュー一覧</caption>
+			<thead>
+				<tr>
+					<th>レビュー</th>
+					<th>レビュー記事</th>
+				</tr>
+			</thead>
+			<tbody>
 				<% @reviews.each do |review| %>
-					<%= link_to review.explanation, guest_review_path(review.id) %>
+				<tr>
+					<td><%= attachment_image_tag review, :review_image, :fill,60,60, format: 'jpeg' %></td>
+					<td><%= link_to review.explanation, guest_review_path(review.id) %></td>
+				</tr>
 				<% end %>
-			</td>
-		</tr>
-	</tbody>
-</table>
-
-<%= form_for @review, url:guest_reviews_path(@review.id) do |f| %>
- <%= f.text_area :explanation %>
- <%= f.hidden_field :lounge_id, value: @lounge.id %>
- <%= f.hidden_field :guest_id, value: @guest %>
- <%= f.submit '投稿' %>
-<% end %>
-
+			</tbody>
+		</table>
+		<%= will_paginate @reviews %>
+	</div>
+</div>

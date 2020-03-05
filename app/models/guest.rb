@@ -4,6 +4,7 @@ class Guest < ApplicationRecord
   acts_as_paranoid
   attachment :profile_image
   has_many :reviews
+  has_many :lounges
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
