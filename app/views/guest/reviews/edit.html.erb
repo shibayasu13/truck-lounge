@@ -1,0 +1,8 @@
+<h1></h1>
+<%= form_for @review, url:guest_review_path do |f| %>
+  <%= f.attachment_field :review_image %>
+ <%= f.text_area :explanation %>
+ <%= f.submit '編集する' %>
+<% end %>
+<%= link_to "詳細へ戻る", guest_review_path(@review.id) %>/
+<%= link_to "削除する", guest_review_path(@review.id), method: :delete,"data-confirm" => "本当に消しますか" %>
