@@ -43,6 +43,8 @@
 						<th>店舗名</th>
 						<th>レビューカテゴリー</th>
 						<th>レビュータイトル</th>
+						<th>評価</th>
+						<th>星評価</th>
 						<th>レビュー画像</th>
 						<th>レビュー本文</th>
 					</tr>
@@ -53,6 +55,21 @@
 						<td><%= review.lounge.store_name %></td>
 						<td><%= review.ganre.category %></td>
 						<td><%= review.title %></td>
+						<td><%= review.rate %></td>
+						<td>
+							<div id="star-rate-<%= review.id %>"></div>
+					         <script>
+					          $('#star-rate-<%= review.id %>').raty({
+					            size: 36,
+					            starOff:  '<%= asset_path('star-off.png') %>',
+					            starOn : '<%= asset_path('star-on.png') %>',
+					            starHalf: '<%= asset_path('star-half.png') %>',
+					            half: true,
+					            readOnly: true,
+					            score: <%= review.rate %>,
+					          });
+					          </script>  
+						</td>
 						<td><%= attachment_image_tag review, :review_image, :fill,60,60, format: 'jpeg' %></td>
 						<td><%= review.explanation %></td>
 					</tr>

@@ -31,6 +31,27 @@
 					<td><%= @review.title %></td>
 				</tr>
 				<tr>
+					<th>星評価</th>
+					<td>
+						<div id="star-rate-<%= @review.id %>"></div>
+					    <script>
+					          $('#star-rate-<%= @review.id %>').raty({
+					            size: 36,
+					            starOff:  '<%= asset_path('star-off.png') %>',
+					            starOn : '<%= asset_path('star-on.png') %>',
+					            starHalf: '<%= asset_path('star-half.png') %>',
+					            half: true,
+					            readOnly: true,
+					            score: <%= @review.rate %>,
+					          });
+					    </script>  
+					</td>
+				</tr>
+				<tr>
+					<th>評価点</th>
+					<td><%= @review.rate %></td>
+				</tr>
+				<tr>
 					<th>レビュー</th>
 					<td><%= @review.explanation %></td>
 				</tr>
@@ -44,4 +65,3 @@
 		</div>
 	</div>
 </div>
-
