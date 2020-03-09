@@ -54,6 +54,22 @@
 							<td><%= f.text_field :title %></td>
 						</tr>
 						<tr>
+							<div class="form-group row" id="star">
+    						<%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+    						<%= f.hidden_field :rate, id: :review_star %>
+  							</div>
+  							<script>
+							  $('#star').raty({
+							    size     : 36,
+							    starOff:  '<%= asset_path('star-off.png') %>',
+							    starOn : '<%= asset_path('star-on.png') %>',
+							    starHalf: '<%= asset_path('star-half.png') %>',
+							    scoreName: 'review[rate]',
+							    half: true,
+							  });
+							  </script> 
+						</tr>
+						<tr>
 							<th>レビュー本文</th>
 							<td><%= f.text_area :explanation %></td>
 						</tr>
@@ -75,13 +91,30 @@
 			<caption>レビュー一覧</caption>
 			<thead>
 				<tr>
+					<th>レビュー星評価</th>
+					<th>レビュー評価点</th>
 					<th>レビュー</th>
-					<th>レビュー記事</th>
+					<th>レビュータイトル</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @reviews.each do |review| %>
 				<tr>
+					<td>
+						<div id="star-rate-<%= review.id %>"></div>
+				        	<script>
+							$('#star-rate-<%= review.id %>').raty({
+							size: 36,
+							starOff:  '<%= asset_path('star-off.png') %>',
+							starOn : '<%= asset_path('star-on.png') %>',
+							starHalf: '<%= asset_path('star-half.png') %>',
+							half: true,
+							readOnly: true,
+							score: <%= review.rate %>,
+							});
+							</script>
+					</td>
+					<td><%= review.rate %></td>
 					<td><%= attachment_image_tag review, :review_image, :fill,60,60, format: 'jpeg' %></td>
 					<td><%= link_to review.title, guest_review_path(review.id) %></td>
 				</tr>
@@ -91,3 +124,5 @@
 		<%= will_paginate @reviews %>
 	</div>
 </div>
+
+
