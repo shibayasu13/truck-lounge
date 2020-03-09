@@ -22,28 +22,53 @@
 			<%= link_to "編集する", edit_guest_path %>
 		</div>
 		<div class="col-lg-8">
-		<table border="1" rules="rows,groups" class = "table table-striped">
+			<table border="1" rules="rows,groups" class = "table table-striped">
+			<caption>お気に入り一覧</caption>
 			<thead>
+				<th>店舗画像</th>
 				<th>店舗名</th>
 				<th>住所</th>
 				<th>施設内容</th>
 				<th>駐車場情報</th>
-				<th>店舗画像</th>
 				<th>営業案内</th>
 				<th>営業時間</th>
 				<th></th>
 			</thead>
-			<% @lounges.each do |lounge| %>
+			<% @guest.fav_lounges.each do |lounge| %>
 
 			<tbody>
-				<td><%= lounge.store_name %></td>
+				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
+				<td><%= link_to lounge.store_name, guest_lounge_path(lounge.id) %></td>
 				<td><%= lounge.adress %></td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
-				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
 				<td><%= lounge.busines_status %></td>
 				<td><%= lounge.business_hours %></td>
 				<td><%= link_to "レビューを見る", guest_lounge_path(lounge.id) %></td>
+			</tbody>
+			<% end %>
+		</table>
+		<table border="1" rules="rows,groups" class = "table table-striped">
+			<caption>自身の投稿一覧</caption>
+			<thead>
+				<th>店舗画像</th>
+				<th>店舗名</th>
+				<th>住所</th>
+				<th>施設内容</th>
+				<th>駐車場情報</th>
+				<th>営業案内</th>
+				<th>営業時間</th>
+			</thead>
+			<% @guest.lounges.each do |lounge| %>
+
+			<tbody>
+				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
+				<td><%= link_to lounge.store_name, guest_lounge_path(lounge.id) %></td>
+				<td><%= lounge.adress %></td>
+				<td><%= lounge.content %></td>
+				<td><%= lounge.parking %></td>
+				<td><%= lounge.busines_status %></td>
+				<td><%= lounge.business_hours %></td>
 			</tbody>
 			<% end %>
 		</table>

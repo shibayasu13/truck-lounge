@@ -1,0 +1,64 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4">
+			<table border="1" rules="rows,groups" class = "table table-striped">
+				<tr>
+					<th>プロフィール画像</th>
+					<td><%= attachment_image_tag @guest, :profile_image, :fill,60,60, format: 'jpeg' %></td>
+				</tr>
+				<tr>
+					<th>ニックネーム</th>
+					<td><%= @guest.name %></td>
+				</tr>
+				<tr>
+					<th>車両情報</th>
+					<td><%= @guest.car %></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-lg-8">
+			<table border="1" rules="rows,groups" class = "table table-striped">
+				<caption>会員店舗投稿一覧</caption>
+				<thead>
+					<tr>
+						<th>店舗名</th>
+						<th>店舗画像</th>
+						<th>店舗案内</th>
+					</tr>
+				</thead>
+				<% @guest.lounges.each do |lounge| %>
+				<tbody>
+					<tr>
+						<td><%= link_to lounge.store_name %></td>
+						<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
+						<td><%= lounge.busines_status %></td>
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+			<table border="1" rules="rows,groups" class = "table table-striped">
+				<caption>レビュー投稿一覧</caption>
+				<thead>
+					<tr>
+						<th>店舗名</th>
+						<th>レビューカテゴリー</th>
+						<th>レビュータイトル</th>
+						<th>レビュー画像</th>
+						<th>レビュー本文</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @guest.reviews.each do |review| %>
+					<tr>
+						<td><%= review.lounge.store_name %></td>
+						<td><%= review.ganre.category %></td>
+						<td><%= review.title %></td>
+						<td><%= attachment_image_tag review, :review_image, :fill,60,60, format: 'jpeg' %></td>
+						<td><%= review.explanation %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

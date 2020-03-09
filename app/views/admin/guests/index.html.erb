@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<table border="1" rules="rows,groups" class = "table table-striped">
+			<caption>会員一覧</caption>
+			<thead>
+				<tr>
+					<th>プロフィール画像</th>
+					<th>ニックネーム</th>
+					<th>車両情報</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @guests.each do |guest| %>
+				<tr>
+					<td><%= attachment_image_tag guest, :profile_image, :fill,60,60, format: 'jpeg' %></td>
+					<td><%= link_to guest.name, admin_guest_path(guest.id) %></td>
+					<td><%= guest.car %></td>
+					<td><%= link_to "編集する", edit_admin_guest_path(guest.id) %>
+					<td><%= link_to "削除する", admin_guest_path(guest.id) %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

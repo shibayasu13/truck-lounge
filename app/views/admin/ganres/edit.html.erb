@@ -1,0 +1,25 @@
+<table>
+	<caption>ジャンル編集画面</caption>
+	<thead>
+		<tr>
+			<th>ジャンル名</th>
+			<th>ステータス</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<%= form_for @ganre, url: admin_ganre_path(@ganre.id) do |f| %>
+			<td>
+    		<%= f.text_field :category %>
+    		</td>
+    		<td>
+    		<%= f.radio_button(:class_status, "有効") %>
+    		<%= f.label(:class_status, "有効", value: "有効") %>
+    		<%= f.radio_button(:class_status, "無効") %>
+    		<%= f.label(:class_status, "無効", value: "無効") %>
+    		<%= f.submit '変更を保存', class:"btn btn-primary btn-lg" %>
+    		</td>
+			<% end %>
+		</tr>
+	</tbody>
+</table>

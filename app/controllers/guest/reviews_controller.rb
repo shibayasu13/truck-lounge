@@ -6,6 +6,7 @@ class Guest::ReviewsController < ApplicationController
 
   def show
   	@review = Review.find(params[:id])
+    @guest = Guest.find_by(params[:id]).reviews
   end
 
   def new
@@ -37,6 +38,6 @@ class Guest::ReviewsController < ApplicationController
 
   private
   def review_params
-  	params.require(:review).permit(:lounge_id,:explanation,:review_image,:rate, :guest_id)
+  	params.require(:review).permit(:lounge_id,:explanation,:review_image,:rate, :guest_id,:ganre_id, :title)
   end
 end

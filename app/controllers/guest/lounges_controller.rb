@@ -13,6 +13,7 @@ class Guest::LoungesController < ApplicationController
 
   def new
     @lounge = Lounge.new
+    current_guest_id = current_guest.id
   end
 
   def edit
@@ -21,6 +22,7 @@ class Guest::LoungesController < ApplicationController
 
   def create
     lounge = Lounge.new(lounge_params)
+    lounge.guest_id = current_guest.id
     lounge.save
     redirect_to guest_lounges_path
   end

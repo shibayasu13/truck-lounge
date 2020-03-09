@@ -31,11 +31,28 @@
 					<th>営業時間</th>
 					<td><%= @lounge.business_hours %></td>
 				</tr>
+				<tr>
+					<th>お気に入り登録</th>
+					<td><% if !Favoritee.exists?(guest_id: current_guest.id, lounge: @lounge.id) %>
+						<%= link_to "お気に入りに登録する", guest_lounge_add_path(@lounge), method: :lounge %>
+						<% else %>
+						<%= link_to "お気に入りを解除する", guest_lounge_add_path(@lounge),method: :delete %>
+						<% end %>
+					</td>
+				</tr>
 			</table>
 			<%= link_to "編集する", edit_guest_lounge_path(@lounge) %>
 			<%= form_for @review, url:guest_reviews_path(@review.id) do |f| %>
 				<table class="table table-striped">
 					<caption>レビュー新規投稿</caption>
+						<tr>
+							<th>カテゴリー</th>
+                        	<td><%= f.collection_select(:ganre_id, Ganre.all, :id, :category) %></td>
+						</tr>
+						<tr>
+							<th>レビュータイトル</th>
+							<td><%= f.text_field :title %></td>
+						</tr>
 						<tr>
 							<th>レビュー本文</th>
 							<td><%= f.text_area :explanation %></td>
@@ -66,7 +83,7 @@
 				<% @reviews.each do |review| %>
 				<tr>
 					<td><%= attachment_image_tag review, :review_image, :fill,60,60, format: 'jpeg' %></td>
-					<td><%= link_to review.explanation, guest_review_path(review.id) %></td>
+					<td><%= link_to review.title, guest_review_path(review.id) %></td>
 				</tr>
 				<% end %>
 			</tbody>
