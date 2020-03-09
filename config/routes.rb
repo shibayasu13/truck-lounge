@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
- 
+
   root 'top#index'
   devise_for :admins, controllers: {session: 'admins/sessions'}
   namespace :admin do
+    resources :ganres
+    resources :guests
   end
 
 
@@ -11,7 +13,10 @@ Rails.application.routes.draw do
   resources :guests, :only => [:show, :edit,:update]
 
   namespace :guest do
-  	resources :lounges
+  	resources :lounges do
+      post 'add' => 'favoritees#create'
+      delete '/add' => 'favoritees#destroy'
+    end
     resources :reviews
   end
 end
