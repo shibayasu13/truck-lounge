@@ -12,11 +12,9 @@
 			<tbody>
 				<% @guests.each do |guest| %>
 				<tr>
-					<td><%= attachment_image_tag guest, :profile_image, :fill,60,60, format: 'jpeg' %></td>
+					<td><%= attachment_image_tag guest, :profile_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
 					<td><%= link_to guest.name, admin_guest_path(guest.id) %></td>
 					<td><%= guest.car %></td>
-					<td><%= link_to "編集する", edit_admin_guest_path(guest.id) %>
-					<td><%= link_to "削除する", admin_guest_path(guest.id) %></td>
 				</tr>
 				<% end %>
 			</tbody>

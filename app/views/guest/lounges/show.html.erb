@@ -9,7 +9,7 @@
 				</tr>
 				<tr>
 					<th>住所</th>
-					<td><%= @lounge.adress %></td>
+					<td><%= @lounge.address %></td>
 				</tr>
 				<tr>
 					<th>施設内容</th>
@@ -21,7 +21,7 @@
 				</tr>
 				<tr>
 					<th>店舗画像</th>
-					<td><%= attachment_image_tag @lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
+					<td><%= attachment_image_tag @lounge, :store_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
 				</tr>
 				<tr>
 					<th>営業案内</th>
@@ -67,7 +67,7 @@
 							    scoreName: 'review[rate]',
 							    half: true,
 							  });
-							  </script> 
+							  </script>
 						</tr>
 						<tr>
 							<th>レビュー本文</th>

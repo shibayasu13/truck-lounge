@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_08_051937) do
+ActiveRecord::Schema.define(version: 2020_03_09_104332) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(version: 2020_03_08_051937) do
   create_table "lounges", force: :cascade do |t|
     t.integer "guest_id"
     t.integer "prefecture_id"
-    t.string "adress"
+    t.string "address"
     t.float "latitude"
-    t.float "longtude"
+    t.float "longitude"
     t.string "business_hours"
     t.text "store_name"
     t.text "parking"
@@ -78,6 +78,9 @@ ActiveRecord::Schema.define(version: 2020_03_08_051937) do
     t.integer "busines_status"
     t.integer "review_id"
     t.string "store_image_id"
+    t.string "prefecture"
+    t.string "address_city"
+    t.string "address_street"
   end
 
   create_table "perefectures", force: :cascade do |t|

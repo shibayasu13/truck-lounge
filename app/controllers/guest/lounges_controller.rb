@@ -23,6 +23,8 @@ class Guest::LoungesController < ApplicationController
   def create
     lounge = Lounge.new(lounge_params)
     lounge.guest_id = current_guest.id
+    lounge.address = lounge.prefecture + lounge.address_city + lounge.address_street
+    lounge.address = lounge.address.gsub(/\d+/, "").gsub(/\-+/, "")
     lounge.save
     redirect_to guest_lounges_path
   end
@@ -38,6 +40,6 @@ class Guest::LoungesController < ApplicationController
 
   private
   def lounge_params
-    params.require(:lounge).permit(:store_name, :adress, :business_hours, :parking, :content, :busines_status, :review_id, :store_image, :guest_id)
+    params.require(:lounge).permit(:address_street,:address_city,:prefecture,:store_name, :address, :business_hours, :parking, :content, :busines_status, :review_id, :store_image, :guest_id, :latitude, :longitude)
   end
 end
