@@ -13,6 +13,11 @@ class GuestsController < ApplicationController
   	redirect_to guest_path
   end
 
+  def destroy
+      guest = Guest.find(params[:id])
+      guest.destroy
+      redirect_to root_path
+  end
 
   private
   def guest_params

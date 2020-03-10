@@ -7,7 +7,7 @@
 				<thead>
 					<tr>
 						<th>プロフィール画像</th>
-						<td><%= attachment_image_tag @review.guest, :profile_image, :fill,60,60, format: 'jpeg' %></td>
+						<td><%= attachment_image_tag @review.guest, :profile_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg" %></td>
 					</tr>
 					<tr>
 						<th>ニックネーム</th>
@@ -60,8 +60,8 @@
 					<td><%= attachment_image_tag @review, :review_image, :fill,60,60, format: 'jpeg' %></td>
 				</tr>
 			</table>
-			<%= link_to "編集する", edit_guest_review_path %>/
-			<%= link_to "店舗詳細に戻る", guest_lounge_path(@review.lounge.id) %>
+			<%= link_to "編集する", edit_guest_review_path,class:"btn btn-info btn-lg" %>
+			<%= link_to "店舗詳細に戻る", guest_lounge_path(@review.lounge.id),class:"btn btn-info btn-lg" %>
 		</div>
 	</div>
 </div>

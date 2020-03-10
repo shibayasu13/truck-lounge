@@ -1,6 +1,8 @@
 <div class="container">
+	<h2>会員情報一覧</h2>
 	<div class="row">
 		<div class="col-lg-4">
+			<caption>会員情報</caption>
 			<table border="1" rules="rows,groups" class = "table table-striped">
 				<tr>
 					<th>プロフィール画像</th>
@@ -15,6 +17,8 @@
 					<td><%= @guest.car %></td>
 				</tr>
 			</table>
+			<%= link_to "編集する", edit_admin_guest_path,class:"btn btn-success btn-lg" %>
+			<%= link_to "削除する", admin_guest_path,class:"btn btn-danger btn-lg", method: :delete,"data-confirm" => "本当に消しますか" %>
 		</div>
 		<div class="col-lg-8">
 			<table border="1" rules="rows,groups" class = "table table-striped">
@@ -70,7 +74,7 @@
 					          });
 					          </script>  
 						</td>
-						<td><%= attachment_image_tag review, :review_image, :fill,60,60, format: 'jpeg' %></td>
+						<td><%= attachment_image_tag review, :review_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
 						<td><%= review.explanation %></td>
 					</tr>
 					<% end %>

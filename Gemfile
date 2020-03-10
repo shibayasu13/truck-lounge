@@ -69,3 +69,4 @@ gem "refile-mini_magick"
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'jquery-turbolinks'
+gem 'geocoder'

@@ -16,10 +16,10 @@
 
 			<tbody>
 				<td><%= lounge.store_name %></td>
-				<td><%= lounge.adress %></td>
+				<td><%= lounge.address %></td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
-				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
+				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
 				<td><%= lounge.busines_status %></td>
 				<td><%= lounge.business_hours %></td>
 				<td><%= link_to "レビューを見る", guest_lounge_path(lounge.id) %></td>

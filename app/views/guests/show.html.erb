@@ -19,7 +19,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<%= link_to "編集する", edit_guest_path %>
+			<%= link_to "編集する", edit_guest_path,class:"btn btn-success btn-lg" %>
 		</div>
 		<div class="col-lg-8">
 			<table border="1" rules="rows,groups" class = "table table-striped">
@@ -39,12 +39,12 @@
 			<tbody>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
 				<td><%= link_to lounge.store_name, guest_lounge_path(lounge.id) %></td>
-				<td><%= lounge.adress %></td>
+				<td><%= lounge.address %></td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
 				<td><%= lounge.busines_status %></td>
 				<td><%= lounge.business_hours %></td>
-				<td><%= link_to "レビューを見る", guest_lounge_path(lounge.id) %></td>
+				<td><%= link_to "レビューを見る", guest_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
 			</tbody>
 			<% end %>
 		</table>
@@ -64,7 +64,7 @@
 			<tbody>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
 				<td><%= link_to lounge.store_name, guest_lounge_path(lounge.id) %></td>
-				<td><%= lounge.adress %></td>
+				<td><%= lounge.address %></td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
 				<td><%= lounge.busines_status %></td>
