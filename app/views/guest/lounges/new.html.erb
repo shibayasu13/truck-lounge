@@ -1,7 +1,17 @@
 <div class="container">
 	<div class="row">
 			<h1>新規投稿</h1>
-			<%= form_for @lounge, url:guest_lounges_path do |f| %>
+
+			<%= form_for @lounge, url: guest_lounges_path do |f| %>
+			<% if @lounge.errors.any? %>
+			  <div id="error_explanation" class="alert alert-danger">
+			    <ul>
+			      <% @lounge.errors.full_messages.each do |message| %>
+			        <li><%= message %></li>
+			      <% end %>
+			    </ul>
+			  </div>
+			<% end %>
 			<table border="1" rules="rows,groups" class = "table table-striped">
 				<thead>
 					<tr>
@@ -14,7 +24,7 @@
 							<%= f.text_field :prefecture %>
 							<%= f.text_field :address_city %>
 							<%= f.text_field :address_street %>
-							<button onclick="getPosition();">Find!!</button>
+							<button onclick="getPosition();">見つける</button>
 							<script>
 
 						    // 現在地取得処理
@@ -45,6 +55,8 @@
 						      );
 						    }
 						  </script>
+						  <script async defersrc="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe-nyw8hZlqdHxNhjpWW1EO41bSCP6dQE&callback=initMap">
+</script>
 
 						</td>
 					</tr>

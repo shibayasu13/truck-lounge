@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      lounge: 休憩所
+    attributes:
+      lounge:
+        store_name: 店舗名
+        parking: 駐車場情報
+        address: 住所
+        business_hours: 営業時間
