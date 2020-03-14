@@ -8,6 +8,8 @@ class Lounge < ApplicationRecord
 	geocoded_by :address
     after_validation :geocode, if: :address_changed?
 
-
+    validates :store_name, presence: true
+    validates :parking, presence: true
+    validates :address, presence: true
+    validates :business_hours, presence: true
 end
-

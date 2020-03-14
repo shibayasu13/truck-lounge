@@ -21,12 +21,16 @@ class Guest::LoungesController < ApplicationController
   end
 
   def create
-    lounge = Lounge.new(lounge_params)
-    lounge.guest_id = current_guest.id
-    lounge.address = lounge.prefecture + lounge.address_city + lounge.address_street
-    lounge.address = lounge.address.gsub(/\d+/, "").gsub(/\-+/, "")
-    lounge.save
-    redirect_to guest_lounges_path
+    @lounge = Lounge.new(lounge_params)
+    @lounge.guest_id = current_guest.id
+    @lounge.address = @lounge.prefecture + @lounge.address_city + @lounge.address_street
+    @lounge.address = @lounge.address.gsub(/\d+/, "").gsub(/\-+/, "")
+    if @lounge.save
+       redirect_to guest_lounge_path(lounge.id)
+    else
+    current_guest_id = current_guest.id
+      render :new
+    end
   end
 
   def update

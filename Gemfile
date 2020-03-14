@@ -70,3 +70,8 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'jquery-turbolinks'
 gem 'geocoder'
+gem 'dotenv-rails'
+gem 'rails-i18n'
+group :production do
+  gem 'mysql2'
+end
