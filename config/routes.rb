@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
 
+  get 'maps/index'
   root 'top#index'
+  resources :maps, only: [:index]
   devise_for :admins, controllers: {session: 'admins/sessions'}
   namespace :admin do
     resources :ganres

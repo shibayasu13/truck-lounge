@@ -72,6 +72,9 @@ gem 'jquery-turbolinks'
 gem 'geocoder'
 gem 'dotenv-rails'
 gem 'rails-i18n'
+gem 'http'
+gem 'openssl'
+gem 'gmaps4rails'
 group :production do
   gem 'mysql2'
 end
