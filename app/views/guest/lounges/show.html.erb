@@ -41,7 +41,7 @@
 					</td>
 				</tr>
 			</table>
-								<div id=map></div> 
+								<div id=map style='width: 100%; height: 500px;'></div> 
 
 			<%= link_to "編集する", edit_guest_lounge_path(@lounge) %>
 			<%= form_for @review, url:guest_reviews_path(@review.id) do |f| %>
@@ -158,3 +158,4 @@
   src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDe-nyw8hZlqdHxNhjpWW1EO41bSCP6dQE&callback=initMap">
 </script>
 
+<%#map{:style => "width: 100%; height: 600px;"}%>

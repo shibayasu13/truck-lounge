@@ -26,7 +26,7 @@ class Guest::LoungesController < ApplicationController
     @lounge.address = @lounge.prefecture + @lounge.address_city + @lounge.address_street
     @lounge.address = @lounge.address.gsub(/\d+/, "").gsub(/\-+/, "")
     if @lounge.save
-       redirect_to guest_lounge_path(lounge.id)
+       redirect_to guest_lounge_path(@lounge.id)
     else
     current_guest_id = current_guest.id
       render :new

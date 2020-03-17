@@ -33,7 +33,7 @@
 				<% @guest.lounges.each do |lounge| %>
 				<tbody>
 					<tr>
-						<td><%= link_to lounge.store_name %></td>
+						<td><%= link_to lounge.store_name, guest_lounge_path(lounge.id) %></td>
 						<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
 						<td><%= lounge.busines_status %></td>
 					</tr>
@@ -56,7 +56,7 @@
 				<tbody>
 					<% @guest.reviews.each do |review| %>
 					<tr>
-						<td><%= review.lounge.store_name %></td>
+						<td><%= link_to review.lounge.store_name, guest_lounge_path(review.lounge.id) %></td>
 						<td><%= review.ganre.category %></td>
 						<td><%= review.title %></td>
 						<td><%= review.rate %></td>

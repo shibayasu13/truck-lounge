@@ -20,4 +20,25 @@
 			</tbody>
 		</table>
 	</div>
+	<div class="row">
+		<table border="1" rules="rows,groups" class = "table table-striped">
+			<caption>会員一覧</caption>
+			<thead>
+				<tr>
+					<th>プロフィール画像</th>
+					<th>ニックネーム</th>
+					<th>車両情報</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @delete_guests.each do |guest| %>
+				<tr>
+					<td><%= attachment_image_tag guest, :profile_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
+					<td><%= link_to guest.name, admin_guest_path(guest.id) %></td>
+					<td><%= guest.car %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>

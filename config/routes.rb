@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       post 'add' => 'favoritees#create'
       delete '/add' => 'favoritees#destroy'
     end
-    resources :reviews
+    resources :reviews do
+      post 'like' => 'likes#create'
+      delete '/like' => 'likes#destroy'
+    end
   end
 end
