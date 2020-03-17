@@ -8,7 +8,10 @@
 		</tr>
 		<tr>
 			<th>住所</th>
-			<td><%= f.text_field :adress %></td>
+			<td><%= f.text_field :prefecture %>
+				<%= f.text_field :address_city %>
+				<%= f.text_field :address_street %>
+			</td>
 		</tr>
 		<tr>
 			<th>施設内容</th>

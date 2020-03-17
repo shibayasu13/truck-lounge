@@ -1,12 +1,14 @@
 class Admin::GuestsController < ApplicationController
 	def index
-		@guests = Guest.all
+		@guests = Guest.without_deleted
+		@delete_guests = Guest.only_deleted
 	end
 
 	def show
-		@guest = Guest.find(params[:id])
 		@lounges = Lounge.all
 		@reviews = Review.all
+		@guest = Guest.with_deleted.find(params[:id])
+		# binding.pry
 	end
 
 	def edit
@@ -18,6 +20,7 @@ class Admin::GuestsController < ApplicationController
       	guest.destroy
       	redirect_to admin_guests_path
  	end
+
 
   private
   def guest_params
