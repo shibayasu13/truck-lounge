@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :ganres
     resources :guests
+    patch 'guests/:id/return' => 'guests#return',as: 'return_guest'
+    patch 'guests/:id/force_destroy' => 'guests#force_destroy',as: 'force_destroy_guest'
   end
 
 

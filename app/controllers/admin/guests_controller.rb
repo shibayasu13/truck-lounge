@@ -21,6 +21,17 @@ class Admin::GuestsController < ApplicationController
       	redirect_to admin_guests_path
  	end
 
+ 	def return
+ 		@guest = Guest.only_deleted.find(params[:id])
+ 		@guest.restore
+ 		redirect_to admin_guests_path
+ 	end
+
+ 	def force_destroy
+ 		@guest = Guest.only_deleted.find(params[:id])
+ 		@guest.really_destroy!
+ 		redirect_to admin_guests_path
+ 	end
 
   private
   def guest_params
