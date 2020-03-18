@@ -38,13 +38,13 @@
 
 			<tbody>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
-				<td><%= link_to lounge.store_name, guest_lounge_path(lounge.id) %></td>
+				<td><%= lounge.store_name %></td>
 				<td><%= lounge.address %></td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
 				<td><%= lounge.busines_status %></td>
 				<td><%= lounge.business_hours %></td>
-				<td><%= link_to "レビューを見る", guest_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
+				<td><%= link_to "休憩所詳細を見る", guest_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
 			</tbody>
 			<% end %>
 		</table>
@@ -58,17 +58,19 @@
 				<th>駐車場情報</th>
 				<th>営業案内</th>
 				<th>営業時間</th>
+				<th>休憩所詳細</th>
 			</thead>
 			<% @guest.lounges.each do |lounge| %>
 
 			<tbody>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
-				<td><%= link_to lounge.store_name, guest_lounge_path(lounge.id) %></td>
+				<td><%= lounge.store_name %></td>
 				<td><%= lounge.address %></td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
 				<td><%= lounge.busines_status %></td>
 				<td><%= lounge.business_hours %></td>
+				<td><%= link_to "休憩所詳細を見る", guest_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
 			</tbody>
 			<% end %>
 		</table>
