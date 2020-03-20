@@ -1,3 +1,4 @@
+
 <h1>レビュー詳細画面</h1>
 <div class="container">
 	<div class="row">
@@ -12,6 +13,10 @@
 						<tr>
 							<th>ニックネーム</th>
 							<td><%= @review.guest.name %></td>
+						</tr>
+						<tr>
+							<th>車両情報</th>
+							<td><%= @review.guest.car %></td>
 						</tr>
 				</table>
 			<% else %>
@@ -69,21 +74,23 @@
 					<td><%= attachment_image_tag @review, :review_image, :fill,60,60, format: 'jpeg' %></td>
 				</tr>
 			</table>
-			<% if @review.liked_by?(current_guest) %>
-			  <li>
-			    <%= link_to guest_review_like_path(@review), method: :delete do %>
-			      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-			      <%= @review.likes.count %> いいね
-			    <% end %>
-			  </li>
-			<% else %>
-			  <li>
-			    <%= link_to guest_review_like_path(@review), method: :post do %>
-			      <i class="fa fa-heart-o" aria-hidden="true"></i>
-			      <%= @review.likes.count %> いいね
-			    <% end %>
-			  </li>
-			<% end %>
+			<div class = "like">
+				<% if @review.liked_by?(current_guest) %>
+				  <li>
+				    <%= link_to guest_review_like_path(@review),method: :delete do %>
+				      <div style = "white"><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+				      <%= @review.likes.count %> いいね</div>
+				    <% end %>
+				  </li>
+				<% else %>
+				  <li>
+				    <%= link_to guest_review_like_path(@review), method: :post do %>
+				      <div style = "white"><i class="fas fa-heart" aria-hidden="true" style ="red"></i>
+				      <%= @review.likes.count %></i>いいね</div>
+				    <% end %>
+				  </li>
+				<% end %>
+			</div>
 			<%= link_to "編集する", edit_guest_review_path,class:"btn btn-success btn-lg" %>
 			<%= link_to "店舗詳細に戻る", guest_lounge_path(@review.lounge.id),class:"btn btn-info btn-lg" %>
 		</div>
