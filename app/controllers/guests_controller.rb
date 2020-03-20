@@ -1,6 +1,8 @@
 class GuestsController < ApplicationController
   def show
   	@guest = Guest.find(params[:id])
+    @lounges = @guest.lounges.all.paginate(page: params[:page], per_page: 5)
+    @fav_lounges = @guest.fav_lounges.all.paginate(page: params[:page], per_page: 5)
   end
 
   def edit

@@ -15,10 +15,79 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
-#map {
-  height: 400px;
-  margin-left:auto;
-  margin-right:auto;
-  text-align:left;
-  width: 80%
+
+ *{
+	margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size:18px;
+}
+
+header{
+	background-color: blue;
+	margin: 0;
+	height: 50px;
+}
+
+footer{
+	color: white;
+	text-align: center;
+	background-color: blue;
+	height: 100px;
+
+}
+footer p{
+	border: 0 auto;
+	line-height:100px;
+	margin: 0;
+}
+.navar-fixed-top{
+	margin: 0;
+}
+
+.text-top{
+	text-align: center;
+
+}
+.navbar-right{
+	margin-right: 0 ;
+}
+
+main {
+background-image: url(kousoku.yakei.jpg);
+height: 100%;
+}
+table{
+	background-color: white;
+	color:black;
+}
+caption{
+	color: white;
+}
+h1{
+	color: white;
+	margin: 0 auto;
+}
+h3{
+	color: white;
+}
+h4{
+	color: white;
+}
+a{
+	color:white;
+}
+
+th{
+	text-align: center !important;
+}
+.td-lounge{
+	width: 10%;
+}
+
+.like{
+	margin-right: 0 auto;
+}
+.pagenate{
+	text-align: center !important;
 }

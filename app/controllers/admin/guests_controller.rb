@@ -1,13 +1,13 @@
 class Admin::GuestsController < ApplicationController
 	def index
-		@guests = Guest.without_deleted
-		@delete_guests = Guest.only_deleted
+		@guests = Guest.without_deleted.paginate(page: params[:page], per_page: 10)
+		@delete_guests = Guest.only_deleted.paginate(page: params[:page], per_page: 10)
 	end
 
 	def show
-		@lounges = Lounge.all
-		@reviews = Review.all
 		@guest = Guest.with_deleted.find(params[:id])
+		@lounges = @guest.lounges.all.paginate(page: params[:page], per_page: 5)
+		@reviews = @guest.reviews.all.paginate(page: params[:page], per_page: 5)
 		# binding.pry
 	end
 

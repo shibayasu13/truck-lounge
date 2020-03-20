@@ -35,7 +35,7 @@
 						<th>店舗案内</th>
 					</tr>
 				</thead>
-				<% @guest.lounges.each do |lounge| %>
+				<% @lounges.each do |lounge| %>
 				<tbody>
 					<tr>
 						<td><%= link_to lounge.store_name, guest_lounge_path(lounge.id) %></td>
@@ -45,6 +45,7 @@
 				</tbody>
 				<% end %>
 			</table>
+			<%= will_paginate @lounges %>
 			<table border="1" rules="rows,groups" class = "table table-striped">
 				<caption>レビュー投稿一覧</caption>
 				<thead>
@@ -85,6 +86,7 @@
 					<% end %>
 				</tbody>
 			</table>
+			<%= will_paginate @reviews %>
 		</div>
 	</div>
 </div>

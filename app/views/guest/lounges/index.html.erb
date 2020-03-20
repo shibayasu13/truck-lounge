@@ -1,31 +1,31 @@
-<h1>店舗情報一覧</h1>
-<div class="container">
+<h1  class="text-color">店舗情報一覧</h1>
+<div class="container" >
 	<div class="row">
 		<table border="1" rules="rows,groups" class = "table table-striped">
 			<thead>
-				<th>店舗名</th>
-				<th>住所</th>
-				<th>施設内容</th>
-				<th>駐車場情報</th>
-				<th>店舗画像</th>
-				<th>営業案内</th>
-				<th>営業時間</th>
+				<th><i class="fas fa-home" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-map-marker-alt" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-coffee" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-parking" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-camera" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-info-circle" style = "font-size:50px"></i></th>
+				<th><i class="far fa-clock" style = "font-size:50px" ></i></th>
 				<th></th>
 			</thead>
 			<% @lounges.each do |lounge| %>
-
 			<tbody>
 				<td><%= lounge.store_name %></td>
 				<td><%= lounge.address %></td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
-				<td><%= lounge.busines_status %></td>
+				<td class = "td-lounge"><%= lounge.busines_status %></td>
 				<td><%= lounge.business_hours %></td>
-				<td><%= link_to "レビューを見る", guest_lounge_path(lounge.id) %></td>
+				<td><%= link_to "レビューを見る", guest_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
 			</tbody>
 			<% end %>
+			<div class ="pagenate"><%= will_paginate @reviews, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %></div>
 		</table>
-		<%= will_paginate @lounges %>
+		<div class ="pagenate"><%= will_paginate @reviews, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %></div>
 	</div>
 </div>

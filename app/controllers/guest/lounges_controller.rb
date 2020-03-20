@@ -1,6 +1,6 @@
 class Guest::LoungesController < ApplicationController
   def index
-    @lounges = Lounge.all.paginate(page: params[:page], per_page: 2)
+    @lounges = Lounge.all.paginate(page: params[:page], per_page: 10)
     @review = Review.find_by(params[:id])
   end
 
@@ -24,7 +24,7 @@ class Guest::LoungesController < ApplicationController
     @lounge = Lounge.new(lounge_params)
     @lounge.guest_id = current_guest.id
     @lounge.address = @lounge.prefecture + @lounge.address_city + @lounge.address_street
-    @lounge.address = @lounge.address.gsub(/\d+/, "").gsub(/\-+/, "")
+    p Geocoder.coordinates(@lounge.address)
     if @lounge.save
        redirect_to guest_lounge_path(@lounge.id)
     else
@@ -34,9 +34,11 @@ class Guest::LoungesController < ApplicationController
   end
 
   def update
-    lounge = Lounge.find(params[:id])
-    lounge.update(lounge_params)
-    redirect_to guest_lounges_path
+
+    @lounge = Lounge.find(params[:id])
+    @lounge.address = @lounge.prefecture + @lounge.address_city + @lounge.address_street
+    @lounge.update(lounge_params)
+    redirect_to guest_lounge_path(@lounge.id)
   end
 
   def destroy

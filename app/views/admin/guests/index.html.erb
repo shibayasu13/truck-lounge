@@ -13,16 +13,17 @@
 				<% @guests.each do |guest| %>
 				<tr>
 					<td><%= attachment_image_tag guest, :profile_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
-					<td><%= link_to guest.name, admin_guest_path(guest.id) %></td>
+					<td><%= link_to guest.name, admin_guest_path(guest.id),class:"btn btn-info btn-lg" %></td>
 					<td><%= guest.car %></td>
 				</tr>
 				<% end %>
 			</tbody>
 		</table>
+		<div class ="pagenate"> <%= will_paginate @guests, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %></div>
 	</div>
 	<div class="row">
 		<table border="1" rules="rows,groups" class = "table table-striped">
-			<caption>会員一覧</caption>
+			<caption>退会済会員一覧</caption>
 			<thead>
 				<tr>
 					<th>プロフィール画像</th>
@@ -34,11 +35,12 @@
 				<% @delete_guests.each do |guest| %>
 				<tr>
 					<td><%= attachment_image_tag guest, :profile_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
-					<td><%= link_to guest.name, admin_guest_path(guest.id) %></td>
+					<td><%= link_to guest.name, admin_guest_path(guest.id),class:"btn btn-info btn-lg" %></td>
 					<td><%= guest.car %></td>
 				</tr>
 				<% end %>
 			</tbody>
 		</table>
+		<div class ="pagenate"> <%= will_paginate @delete_guests, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %></div>
 	</div>
 </div>

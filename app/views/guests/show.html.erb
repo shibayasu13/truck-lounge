@@ -5,11 +5,11 @@
 			<table class = "table table-striped">
 				<caption></caption>
 				<thead>
-					<tr>ゲスト情報</tr>
+					<caption>ゲスト情報</caption>
 				</thead>
 				<tbody>
 					<tr>
-						<td><%= attachment_image_tag @guest, :profile_image, :fill,60,60, format: 'jpeg' %></td>
+						<td><%= attachment_image_tag @guest, :profile_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100"  %></td>
 					</tr>
 					<tr>
 						<td><%= @guest.name %></td>
@@ -34,11 +34,11 @@
 				<th>営業時間</th>
 				<th></th>
 			</thead>
-			<% @guest.fav_lounges.each do |lounge| %>
+			<% @fav_lounges.each do |lounge| %>
 
 			<tbody>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
-				<td><%= lounge.store_name %></td>
+				<td class = "td-lounge"><%= lounge.store_name %></td>
 				<td><%= lounge.address %></td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
@@ -48,6 +48,7 @@
 			</tbody>
 			<% end %>
 		</table>
+		<div class ="pagenate"><%= will_paginate @fav_lounges, :previous_label => ' &lt 前へ', :next_label => '次へ &gt'  %></div>
 		<table border="1" rules="rows,groups" class = "table table-striped">
 			<caption>自身の投稿一覧</caption>
 			<thead>
@@ -60,7 +61,7 @@
 				<th>営業時間</th>
 				<th>休憩所詳細</th>
 			</thead>
-			<% @guest.lounges.each do |lounge| %>
+			<% @lounges.each do |lounge| %>
 
 			<tbody>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
@@ -73,7 +74,9 @@
 				<td><%= link_to "休憩所詳細を見る", guest_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
 			</tbody>
 			<% end %>
+
 		</table>
+		<div class ="pagenate"> <%= will_paginate @lounges, :previous_label => ' &lt 前へ', :next_label => '次へ &gt'  %></div>
 	</div>
 	</div>
 </div>

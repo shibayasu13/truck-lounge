@@ -4,60 +4,57 @@
 		<div class="col-lg-4">
 			<table border="1" rules="rows,groups" class = "table table-striped">
 				<tr>
-					<th>店舗名</th>
+					<th><i class="fas fa-home" style = "font-size:50px" ></i></th>
 					<td><%= @lounge.store_name %></td>
 				</tr>
 				<tr>
-					<th>住所</th>
+					<th><i class="fas fa-map-marker-alt" style = "font-size:50px" ></i></th>
 					<td><%= @lounge.address %></td>
 				</tr>
 				<tr>
-					<th>施設内容</th>
+					<th><i class="fas fa-coffee" style = "font-size:50px" ></i></th>
 					<td><%= @lounge.content %></td>
 				</tr>
 				<tr>
-					<th>駐車場情報</th>
+					<th><i class="fas fa-parking" style = "font-size:50px" ></i></th>
 					<td><%= @lounge.parking %></td>
 				</tr>
 				<tr>
-					<th>店舗画像</th>
+					<th><i class="fas fa-camera" style = "font-size:50px" ></i></th>
 					<td><%= attachment_image_tag @lounge, :store_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
 				</tr>
 				<tr>
-					<th>営業案内</th>
+					<th><i class="fas fa-info" style = "font-size:50px"></i></th>
 					<td><%= @lounge.busines_status %></td>
 				</tr>
 				<tr>
-					<th>営業時間</th>
+					<th><i class="far fa-clock" style = "font-size:50px" ></i></th>
 					<td><%= @lounge.business_hours %></td>
 				</tr>
 				<tr>
-					<th>お気に入り登録</th>
-					<td><% if !Favoritee.exists?(guest_id: current_guest.id, lounge: @lounge.id) %>
-						<%= link_to "お気に入りに登録する", guest_lounge_add_path(@lounge), method: :lounge %>
+					<th><i class="fas fa-map-marked-alt" style = "font-size:50px" ></i></th>
+					<td><div id=map style='width: 100px; height: 100px;'></div> </td>
+				</tr>
+				<tr>
+					<th><i class="fas fa-paperclip" style = "font-size:50px"></th>
+					<td>
+						<% if !Favoritee.exists?(guest_id: current_guest.id, lounge: @lounge.id) %>
+						<%= link_to "お気に入りに登録する", guest_lounge_add_path(@lounge),class:"btn btn-info btn-lg", method: :lounge %>
 						<% else %>
-						<%= link_to "お気に入りを解除する", guest_lounge_add_path(@lounge),method: :delete %>
+						<%= link_to "お気に入りを解除する", guest_lounge_add_path(@lounge),class:"btn btn-info btn-lg",method: :delete %>
 						<% end %>
 					</td>
 				</tr>
 			</table>
-								<div id=map style='width: 100%; height: 500px;'></div> 
-
 			<%= link_to "編集する", edit_guest_lounge_path(@lounge) %>
 			<%= form_for @review, url:guest_reviews_path(@review.id) do |f| %>
-				<table class="table table-striped">
-					<caption>レビュー新規投稿</caption>
-						<tr>
-							<th>カテゴリー</th>
-                        	<td><%= f.collection_select(:ganre_id, Ganre.all, :id, :category) %></td>
-						</tr>
-						<tr>
-							<th>レビュータイトル</th>
-							<td><%= f.text_field :title %></td>
-						</tr>
-						<tr>
+					<h3>レビュー新規投稿</h3>
+							<h4>カテゴリー</h4>
+                        	<div><%= f.collection_select(:ganre_id, Ganre.all, :id, :category) %></div>
+							<h4>レビュータイトル</h4>
+							<div><%= f.text_field :title %></div>
 							<div class="form-group row" id="star">
-    						<%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+    						<h4><%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %></h4>
     						<%= f.hidden_field :rate, id: :review_star %>
   							</div>
   							<script>
@@ -70,21 +67,15 @@
 							    half: true,
 							  });
 							  </script>
-						</tr>
-						<tr>
-							<th>レビュー本文</th>
-							<td><%= f.text_area :explanation %></td>
-						</tr>
-						<tr>
-							<th>レビュー画像</th>
-							<td><%= f.attachment_field :review_image %></td>
-						</tr>
+							<h4>レビュー本文</h4>
+							<div><%= f.text_area :explanation %></div>
+							<h4>レビュー画像</h4>
+							<h4><div><%= f.attachment_field :review_image %></div></h4>
 						<%= f.hidden_field :lounge_id, value: @lounge.id %>
 					 	<%= f.hidden_field :guest_id, value: @guest %>
-				</table>
 				<%= f.hidden_field :lounge_id, value: @lounge.id %>
 				<%= f.hidden_field :guest_id, value: @guest %>
-				<%= f.submit '投稿' %>
+				<%= f.submit '投稿',class:"btn btn-info btn-lg" %>
 			<% end %>
 		</div>
 
@@ -118,12 +109,12 @@
 					</td>
 					<td><%= review.rate %></td>
 					<td><%= attachment_image_tag review, :review_image, :fill,60,60, format: 'jpeg' %></td>
-					<td><%= link_to review.title, guest_review_path(review.id) %></td>
+					<td><%= link_to review.title, guest_review_path(review.id),:style=>"color:black;" %></td>
 				</tr>
 				<% end %>
 			</tbody>
 		</table>
-		<%= will_paginate @reviews %>
+		<div class ="pagenate"> <%= will_paginate @reviews %></div>
 	</div>
 </div>
 
@@ -157,5 +148,88 @@
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDe-nyw8hZlqdHxNhjpWW1EO41bSCP6dQE&callback=initMap">
 </script>
+
+<!-- {
+		"address_components": [
+			{
+				"long_name": "",
+				"short_name": "",
+				"types": [
+					"political",
+					"sublocality",
+					"sublocality_level_4"
+				]
+			},
+			{
+				"long_name": "",
+				"short_name": "",
+				"types": [
+					"political",
+					"sublocality",
+					"sublocality_level_2"
+				]
+			},
+			{
+				"long_name": "@lounge.address_street",
+				"short_name": "@lounge.address_street",
+				"types": [
+					"political",
+					"sublocality",
+					"sublocality_level_1"
+				]
+			},
+			{
+				"long_name": "@lounge.address_city",
+				"short_name": "@lounge.address_city",
+				"types": [
+					"locality",
+					"political"
+				]
+			},
+			{
+				"long_name": "@lounge.prefecture",
+				"short_name": "@lounge.prefecture",
+				"types": [
+					"administrative_area_level_1",
+					"political"
+				]
+			},
+			{
+				"long_name": "",
+				"short_name": "",
+				"types": [
+					"country",
+					"political"
+				]
+			},
+			{
+				"long_name": "",
+				"short_name": "",
+				"types": [
+					"postal_code"
+				]
+			}
+		],
+		"formatted_address": "@lounge.address",
+		"geometry": {
+			"location": {
+				"lat": ,
+				"lng": 
+			},
+			"location_type": "ROOFTOP",
+			"viewport": {
+				"south": ,
+				"west": ,
+				"north": ,
+				"east": 
+			}
+		},
+		"place_id": "ChIJT5OqzA-MGGARLrl0nC90mwA",
+		"types": [
+			"political",
+			"sublocality",
+			"sublocality_level_4"
+		]
+	} -->
 
 <%#map{:style => "width: 100%; height: 600px;"}%>
