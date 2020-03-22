@@ -1,6 +1,12 @@
-<h1  class="text-color">店舗情報一覧</h1>
+
 <div class="container" >
 	<div class="row">
+		<h1  class="text-color">店舗情報一覧</h1>
+		<div class="col-lg-12">
+		<%= form_with url: search_guest_lounges_path, method: :get, local: true do |f| %>
+		  <%= f.text_field :store_name %>
+		  <%= f.submit :検索する,class:"btn btn-info btn-lg" %>
+		<% end %>
 		<table border="1" rules="rows,groups" class = "table table-striped">
 			<thead>
 				<th><i class="fas fa-home" style = "font-size:50px" ></i></th>
@@ -27,5 +33,6 @@
 			<div class ="pagenate"><%= will_paginate @reviews, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %></div>
 		</table>
 		<div class ="pagenate"><%= will_paginate @reviews, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %></div>
+	</div>
 	</div>
 </div>

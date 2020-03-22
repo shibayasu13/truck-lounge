@@ -1,0 +1,42 @@
+<div class="container" >
+  <div class="row">
+    <div class="col-lg-4">
+      <p>検索</p>
+      <%= form_with url: search_guest_lounges_path, method: :get, local: true do |f| %>
+        <%= f.text_field :store_name %>
+        <%= f.submit :search %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+    <table border="1" rules="rows,groups" class = "table table-striped">
+      <caption>検索結果一覧</caption>
+      <thead>
+        <th><i class="fas fa-home" style = "font-size:50px" ></i></th>
+        <th><i class="fas fa-map-marker-alt" style = "font-size:50px" ></i></th>
+        <th><i class="fas fa-coffee" style = "font-size:50px" ></i></th>
+        <th><i class="fas fa-parking" style = "font-size:50px" ></i></th>
+        <th><i class="fas fa-camera" style = "font-size:50px" ></i></th>
+        <th><i class="fas fa-info-circle" style = "font-size:50px"></i></th>
+        <th><i class="far fa-clock" style = "font-size:50px" ></i></th>
+        <th></th>
+      </thead>
+      <% @lounges.each do |lounge| %>
+      <tbody>
+        <td><%= lounge.store_name %></td>
+        <td><%= lounge.address %></td>
+        <td><%= lounge.content %></td>
+        <td><%= lounge.parking %></td>
+        <td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
+        <td class = "td-lounge"><%= lounge.busines_status %></td>
+        <td><%= lounge.business_hours %></td>
+        <td><%= link_to "レビューを見る", guest_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
+      </tbody>
+      <% end %>
+      <div class ="pagenate"><%= will_paginate @reviews, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %></div>
+      </table>
+      <div class ="pagenate"><%= will_paginate @reviews, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %></div>
+    </div>
+  </div>
+</div>
