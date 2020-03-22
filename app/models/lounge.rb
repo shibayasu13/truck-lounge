@@ -13,4 +13,11 @@ class Lounge < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  def self.search(search)
+      if search
+        Lounge.where(['content LIKE ?', "%#{search}%"])
+      else
+        Lounge.all
+      end
+    end
 end

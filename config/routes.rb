@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :guest do
   	resources :lounges do
+      get :search, on: :collection
       post 'add' => 'favoritees#create'
       delete '/add' => 'favoritees#destroy'
     end
