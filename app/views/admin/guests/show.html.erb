@@ -1,8 +1,7 @@
 <div class="container">
-	<h2>会員情報一覧</h2>
+	<h1>会員情報一覧</h1>
 	<div class="row">
 		<div class="col-lg-4">
-			<caption>会員情報</caption>
 			<table border="1" rules="rows,groups" class = "table table-striped">
 				<tr>
 					<th>プロフィール画像</th>
@@ -33,14 +32,19 @@
 						<th>店舗名</th>
 						<th>店舗画像</th>
 						<th>店舗案内</th>
+						<th></th>
 					</tr>
 				</thead>
 				<% @lounges.each do |lounge| %>
 				<tbody>
 					<tr>
-						<td><%= link_to lounge.store_name, guest_lounge_path(lounge.id) %></td>
+						<td><%= link_to lounge.store_name, admin_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
 						<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
 						<td><%= lounge.busines_status %></td>
+						<td>
+							<%= link_to "編集する", edit_admin_lounge_path(lounge.id),class:"btn btn-success btn-lg" %>
+							
+						</td>
 					</tr>
 				</tbody>
 				<% end %>
@@ -62,7 +66,7 @@
 				<tbody>
 					<% @guest.reviews.each do |review| %>
 					<tr>
-						<td><%= link_to review.lounge.store_name, guest_lounge_path(review.lounge.id) %></td>
+						<td><%= link_to review.lounge.store_name, admin_lounge_path(review.lounge.id),class:"btn btn-info btn-lg" %></td>
 						<td><%= review.ganre.category %></td>
 						<td><%= review.title %></td>
 						<td><%= review.rate %></td>

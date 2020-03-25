@@ -1,0 +1,49 @@
+<h1>管理者用レビューの編集</h1>
+<table class= "table table-striped">
+<%= form_for @review, url:admin_review_path do |f| %>
+<tr>
+	<th>レビュー画像</th>
+	<td> <%= f.attachment_field :review_image %></td>
+</tr>
+  <tr>
+  	<th>レビュージャンル</th>
+  	<td><%= f.collection_select(:ganre_id, Ganre.all, :id, :category) %></td>
+  </tr>
+  <tr>
+  	<th>レビュータイトル</th>
+  	<td><%= f.text_field :title %></td>
+  </tr>
+    <tr>
+      <div class="form-group row" id="star">
+        <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+        <%= f.hidden_field :rate, id: :review_star %>
+        </div>
+        <script>
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[rate]',
+          half: true,
+        });
+        </script> 
+    </tr>
+ <tr>
+ 	<th>レビュー本文</th>
+ 	<td><%= f.text_area :explanation %></td>
+ </tr>
+</table>
+ <%= f.submit '編集する',class:"btn btn-success btn-lg" %>
+ <% end %>
+
+<%= link_to "詳細へ戻る", admin_review_path(@review.id),class:"btn btn-info btn-lg" %>
+<%= link_to "削除する", admin_review_path(@review.id),class:"btn btn-danger btn-lg", method: :delete,"data-confirm" => "本当に消しますか" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4">
+
+		</div>
+	</div>
+</div>

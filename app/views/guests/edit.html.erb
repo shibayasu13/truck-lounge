@@ -20,8 +20,9 @@
 						</tr>
 					</tbody>
 				</table>
-				<%= f.submit '編集する',class:"btn btn-success btn-lg" %>
+				<%= f.submit '編集する',class:"btn btn-success btn-lg" %><%= link_to "退会する", guest_path,class:"btn btn-danger btn-lg", method: :delete,"data-confirm" => "本当に退会しますか" %>
 			<% end %>
+			
 		</div>
 		<div class="col-lg-2">
 		</div>

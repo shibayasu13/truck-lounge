@@ -12,10 +12,10 @@ class Guest::FavoriteesController < ApplicationController
   end
 
   def destroy
-  	@lounge = Lounge.find(params[:lounge_id])
-  	favoritee = Favoritee.find_by(params[:id])
-  	if favoritee.destroy
-  	   redirect_to guest_lounge_path(@lounge.id)
+    @lounge = Lounge.find(params[:lounge_id])
+  	@favoritee = Favoritee.find_by(lounge_id: @lounge.id)
+  	if @favoritee.destroy
+  	   redirect_to guest_path(current_guest.id)
   	end
   end
 end

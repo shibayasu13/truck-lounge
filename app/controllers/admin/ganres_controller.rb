@@ -1,4 +1,5 @@
 class Admin::GanresController < ApplicationController
+  before_action :authenticate_admin!
   def index
   	@ganre = Ganre.new
   	@ganres = Ganre.all
