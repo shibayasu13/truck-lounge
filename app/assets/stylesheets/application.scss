@@ -26,7 +26,7 @@
 header{
 	background-color: blue;
 	margin: 0;
-	height: 50px;
+	height: 60px;
 }
 
 footer{
@@ -47,7 +47,6 @@ footer p{
 
 .text-top{
 	text-align: center;
-
 }
 .navbar-right{
 	margin-right: 0 ;
@@ -81,6 +80,23 @@ a{
 th{
 	text-align: center !important;
 }
+
+i{
+	font-size:50px
+}
+
+.top-1{
+	font-family: 'Great Vibes', cursive;
+	font-size: 50px;
+}
+.top-text{
+	font-size:50px;
+	height: 50px;
+}
+.ha-title{
+	font-family: 'Great Vibes', cursive;
+}
+
 .td-lounge{
 	width: 10%;
 }
@@ -90,4 +106,10 @@ th{
 }
 .pagenate{
 	text-align: center !important;
+}
+.devise{
+	color:white;
+}
+.rev-table{
+	text-align: center;
 }

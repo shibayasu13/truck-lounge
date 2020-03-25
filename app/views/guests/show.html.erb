@@ -1,4 +1,4 @@
-<h1>マイページ</h1>
+
 <div class="container">
 	<div class="row">
 		<div class="col-lg-4">
@@ -25,13 +25,13 @@
 			<table border="1" rules="rows,groups" class = "table table-striped">
 			<caption>お気に入り一覧</caption>
 			<thead>
-				<th>店舗画像</th>
-				<th>店舗名</th>
-				<th>住所</th>
-				<th>施設内容</th>
-				<th>駐車場情報</th>
-				<th>営業案内</th>
-				<th>営業時間</th>
+				<th><i class="fas fa-camera" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-home" style = "font-size:50px" ></th>
+				<th><i class="fas fa-map-marker-alt" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-coffee" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-parking" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-info-circle" style = "font-size:50px"></th>
+				<th><i class="far fa-clock" style = "font-size:50px" ></i></th>
 				<th></th>
 			</thead>
 			<% @fav_lounges.each do |lounge| %>
@@ -39,12 +39,15 @@
 			<tbody>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
 				<td class = "td-lounge"><%= lounge.store_name %></td>
-				<td><%= lounge.address %></td>
+				<td><%= lounge.prefecture %>
+					<%= lounge.address_city %>
+					<%= lounge.address_street %>
+				</td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
 				<td><%= lounge.busines_status %></td>
 				<td><%= lounge.business_hours %></td>
-				<td><%= link_to "休憩所詳細を見る", guest_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
+				<td><%= link_to "詳細", guest_lounge_path(lounge.id),class:"btn btn-info btn-xs" %></td>
 			</tbody>
 			<% end %>
 		</table>
@@ -52,26 +55,28 @@
 		<table border="1" rules="rows,groups" class = "table table-striped">
 			<caption>自身の投稿一覧</caption>
 			<thead>
-				<th>店舗画像</th>
-				<th>店舗名</th>
-				<th>住所</th>
-				<th>施設内容</th>
-				<th>駐車場情報</th>
-				<th>営業案内</th>
-				<th>営業時間</th>
-				<th>休憩所詳細</th>
+				<th><i class="fas fa-camera" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-home" style = "font-size:50px" ></th>
+				<th><i class="fas fa-map-marker-alt" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-coffee" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-parking" style = "font-size:50px" ></i></th>
+				<th><i class="fas fa-info-circle" style = "font-size:50px"></th>
+				<th><i class="far fa-clock" style = "font-size:50px" ></i></th>
 			</thead>
 			<% @lounges.each do |lounge| %>
 
 			<tbody>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
 				<td><%= lounge.store_name %></td>
-				<td><%= lounge.address %></td>
+				<td><%= lounge.prefecture %>
+					<%= lounge.address_city %>
+					<%= lounge.address_street %>
+				</td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
 				<td><%= lounge.busines_status %></td>
 				<td><%= lounge.business_hours %></td>
-				<td><%= link_to "休憩所詳細を見る", guest_lounge_path(lounge.id),class:"btn btn-info btn-lg" %></td>
+				<td><%= link_to "詳細", guest_lounge_path(lounge.id),class:"btn btn-info btn-xs" %></td>
 			</tbody>
 			<% end %>
 

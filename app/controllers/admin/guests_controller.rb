@@ -1,4 +1,5 @@
 class Admin::GuestsController < ApplicationController
+	before_action :authenticate_admin!
 	def index
 		@guests = Guest.without_deleted.paginate(page: params[:page], per_page: 10)
 		@delete_guests = Guest.only_deleted.paginate(page: params[:page], per_page: 10)
@@ -32,6 +33,13 @@ class Admin::GuestsController < ApplicationController
  		@guest.really_destroy!
  		redirect_to admin_guests_path
  	end
+ 	def search
+	    if params[:name].present?
+	      @guests = Guest.with_deleted.where('name LIKE ?', "%#{params[:name]}%")
+	    else
+	      @guests = Guest.none
+	    end
+  	end
 
   private
   def guest_params

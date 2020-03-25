@@ -1,0 +1,32 @@
+<div class="container" >
+  <div class="row">
+    <div class="col-lg-4">
+      <p>検索</p>
+      <%= form_with url:  search_admin_guests_path, method: :get, local: true do |f| %>
+        <%= f.text_field :name %>
+        <%= f.submit :検索する,class:"btn btn-info btn-lg" %>
+      <% end %>
+
+ <div class="container">
+  <div class="row">
+    <table border="1" rules="rows,groups" class = "table table-striped">
+      <caption>会員一覧</caption>
+      <thead>
+        <tr>
+          <th>プロフィール画像</th>
+          <th>ニックネーム</th>
+          <th>車両情報</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @guests.each do |guest| %>
+        <tr>
+          <td><%= attachment_image_tag guest, :profile_image, :fill,60,60, format: 'jpeg',fallback: "no_image.jpg",size: "100x100" %></td>
+          <td><%= link_to guest.name, admin_guest_path(guest.id),class:"btn btn-info btn-lg" %></td>
+          <td><%= guest.car %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

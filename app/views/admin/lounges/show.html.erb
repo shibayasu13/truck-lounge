@@ -1,4 +1,4 @@
-<h1>店舗詳細画面</h1>
+<h1>管理者用店舗詳細画面</h1>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-4">
@@ -9,10 +9,7 @@
 				</tr>
 				<tr>
 					<th><i class="fas fa-map-marker-alt" style = "font-size:50px" ></i></th>
-					<td><%= @lounge.prefecture %>
-						<%= @lounge.address_city %>
-						<%= @lounge.address_street %>
-						</td>
+					<td><%= @lounge.address %></td>
 				</tr>
 				<tr>
 					<th><i class="fas fa-coffee" style = "font-size:50px" ></i></th>
@@ -42,54 +39,12 @@
 					<th>更新日</th>
 					<td><%= @lounge.updated_at.strftime("%Y年%m月%d日 %H時%M分")  %></td>
 				</tr>
-				<tr>
-					<th><i class="fas fa-paperclip" style = "font-size:50px"></th>
-					<td>
-						<% if !Favoritee.exists?(guest_id: current_guest.id, lounge: @lounge.id) %>
-						<%= link_to "お気に入りに登録する", guest_lounge_add_path(@lounge),class:"btn btn-info btn-lg", method: :lounge %>
-						<% else %>
-						<%= link_to "お気に入りを解除する", guest_lounge_add_path(@lounge),class:"btn btn-info btn-lg",method: :delete %>
-						<% end %>
-					</td>
-				</tr>
 			</table>
-			<% if @lounge.guest == current_guest %>
-				<%= link_to "編集する", edit_guest_lounge_path(@lounge),class:"btn btn-success btn-lg" %>
-			<% end %>
-			<%= form_for @review, url:guest_reviews_path(@review.id) do |f| %>
-					<h3>レビュー新規投稿</h3>
-							<h4>カテゴリー</h4>
-                        	<div><%= f.collection_select(:ganre_id, Ganre.all, :id, :category) %></div>
-							<h4>レビュータイトル</h4>
-							<div><%= f.text_field :title %></div>
-							<div class="form-group row" id="star">
-    						<h4><%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %></h4>
-    						<%= f.hidden_field :rate, id: :review_star %>
-  							</div>
-  							<script>
-							  $('#star').raty({
-							    size     : 36,
-							    starOff:  '<%= asset_path('star-off.png') %>',
-							    starOn : '<%= asset_path('star-on.png') %>',
-							    starHalf: '<%= asset_path('star-half.png') %>',
-							    scoreName: 'review[rate]',
-							    half: true,
-							  });
-							  </script>
-							<h4>レビュー本文</h4>
-							<div><%= f.text_area :explanation %></div>
-							<h4>レビュー画像</h4>
-							<h4><div><%= f.attachment_field :review_image %></div></h4>
-						<%= f.hidden_field :lounge_id, value: @lounge.id %>
-					 	<%= f.hidden_field :guest_id, value: @guest %>
-				<%= f.hidden_field :lounge_id, value: @lounge.id %>
-				<%= f.hidden_field :guest_id, value: @guest %>
-				<%= f.submit '投稿',class:"btn btn-info btn-lg" %>
-			<% end %>
+			<%= link_to "編集する", edit_admin_lounge_path(@lounge),class:"btn btn-success btn-lg" %>
 		</div>
 
 		<div class="col-lg-8">
-		<table class= "table table-striped" style = "text-align: center;">
+		<table class= "table table-striped">
 			<caption>レビュー一覧</caption>
 			<thead>
 				<tr>
@@ -118,7 +73,7 @@
 					</td>
 					<td><%= review.rate %></td>
 					<td><%= attachment_image_tag review, :review_image, :fill,60,60, format: 'jpeg' %></td>
-					<td><%= link_to review.title, guest_review_path(review.id),:style=>"color:black;" %></td>
+					<td><%= link_to review.title, admin_review_path(review.id),:style=>"color:black;" %></td>
 				</tr>
 				<% end %>
 			</tbody>
@@ -130,9 +85,7 @@
 <script type="text/javascript">
   function initMap() {
 
-
     var test = {lat: <%= @lounge.latitude %>, lng: <%= @lounge.longitude %>};
-    alert(<%= @lounge.latitude %> + "" + <%= @lounge.longitude %>);
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
       center: test
@@ -156,7 +109,7 @@
     });
   }
 </script>
-<script defer
+<script async defer
   src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDe-nyw8hZlqdHxNhjpWW1EO41bSCP6dQE&callback=initMap">
 </script>
 
