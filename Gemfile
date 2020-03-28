@@ -76,6 +76,7 @@ gem 'rails-i18n'
 gem 'http'
 gem 'openssl'
 gem 'gmaps4rails'
+gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
