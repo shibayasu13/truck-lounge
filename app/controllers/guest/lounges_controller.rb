@@ -23,8 +23,6 @@ class Guest::LoungesController < ApplicationController
   def create
     @lounge = Lounge.new(lounge_params)
     @lounge.guest_id = current_guest.id
-    @lounge.address = @lounge.prefecture + @lounge.address_city + @lounge.address_street
-    # p Geocoder.coordinates(@lounge.address)
     if @lounge.save
        redirect_to guest_lounge_path(@lounge.id)
     else
@@ -36,9 +34,7 @@ class Guest::LoungesController < ApplicationController
   def update
 
     @lounge = Lounge.find(params[:id])
-    @lounge.address = @lounge.prefecture + @lounge.address_city + @lounge.address_street
     @lounge.update(lounge_params)
-    binding.pry
     redirect_to guest_lounge_path(@lounge.id)
   end
 
@@ -54,6 +50,6 @@ class Guest::LoungesController < ApplicationController
 
   private
   def lounge_params
-    params.require(:lounge).permit(:address_street,:address_city,:prefecture,:store_name, :address, :business_hours, :parking, :content, :busines_status, :review_id, :store_image, :guest_id, :latitude, :longitude)
+    params.require(:lounge).permit(:address,:address_city,:prefecture,:store_name, :address, :business_hours, :parking, :content, :busines_status, :review_id, :store_image, :guest_id, :latitude, :longitude)
   end
 end

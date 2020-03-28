@@ -18,7 +18,6 @@
 //= require underscore
 //= require gmaps/google
 
-
 /*!
  * jQuery Raty - A Star Rating Plugin
  *
@@ -782,4 +781,5 @@
     targetType:   'hint'
   };
 })(jQuery);
+
 

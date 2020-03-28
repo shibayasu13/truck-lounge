@@ -39,9 +39,7 @@
 			<tbody>
 				<td><%= attachment_image_tag lounge, :store_image, :fill,60,60, format: 'jpeg' %></td>
 				<td class = "td-lounge"><%= lounge.store_name %></td>
-				<td><%= lounge.prefecture %>
-					<%= lounge.address_city %>
-					<%= lounge.address_street %>
+				<td><%= lounge.address %>
 				</td>
 				<td><%= lounge.content %></td>
 				<td><%= lounge.parking %></td>
