@@ -7,10 +7,11 @@ class Lounge < ApplicationRecord
 	enum busines_status: {営業中:0,閉店:1,改装中:2}
   belongs_to :guest
 
-    validates :store_name, presence: true
+    validates :store_name, presence: true, uniqueness: true
     validates :parking, presence: true
     validates :business_hours, presence: true
-    
+    validates :address,uniqueness: true
+
   geocoded_by :address
   after_validation :geocode
 
