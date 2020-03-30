@@ -11,12 +11,13 @@ class Guest::ReviewsController < ApplicationController
 
   def new
   	@review = Review.new
-
+    current_guest_id = current_guest.id
   end
 
   def create
   	@review = Review.new(review_params)
-  	@review.save
+    @review.guest_id = current_guest.id
+  	@review.save!
   	redirect_to guest_lounge_path(@review.lounge.id)
   end
 
@@ -33,11 +34,11 @@ class Guest::ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    redirect_to guest_reviews_path
+    redirect_to guest_lounge_path(lounge.id)
   end
 
   private
   def review_params
-  	params.require(:review).permit(:lounge_id,:explanation,:review_image, :rate, :guest_id,:ganre_id, :title)
+  	params.require(:review).permit(:lounge_id,:explanation,:review_image, :rate, :guest_id,:ganre_id, :title, :guest_id)
   end
 end

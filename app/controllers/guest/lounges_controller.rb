@@ -1,7 +1,7 @@
 class Guest::LoungesController < ApplicationController
   
   def index
-    @lounges = Lounge.all.paginate(page: params[:page], per_page: 10)
+    @lounges = Lounge.all.paginate(page: params[:page], per_page: 5)
     @review = Review.find_by(params[:id])
   end
 
@@ -41,7 +41,7 @@ class Guest::LoungesController < ApplicationController
 
   def search
     if params[:search].present?
-      @lounges = Lounge.where('store_name LIKE? OR prefecture LIKE ? OR address_city LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%","%#{params[:search]}%").paginate(page: params[:page], per_page: 5)
+      @lounges = Lounge.where('store_name LIKE? OR address LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").paginate(page: params[:page], per_page: 5)
 
     else
       @lounges = Lounge.none.paginate(page: params[:page], per_page: 5)
