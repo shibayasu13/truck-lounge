@@ -77,6 +77,10 @@ gem 'http'
 gem 'openssl'
 gem 'gmaps4rails'
 gem 'dotenv-rails'
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano3-puma'
+gem 'capistrano-rbenv'
 group :production do
   gem 'mysql2'
 end
