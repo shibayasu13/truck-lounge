@@ -126,7 +126,6 @@ GEM
     ed25519 (1.2.4)
     erubi (1.9.0)
     execjs (2.7.0)
-    executables (0.1.0)
     ffi (1.12.2)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -332,7 +331,6 @@ DEPENDENCIES
   devise
   dotenv-rails
   ed25519
-  executables
   geocoder
   gmaps4rails
   http
