@@ -83,6 +83,7 @@ gem 'gmaps4rails'
 gem 'dotenv-rails'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem 'executables'
 group :production do
   gem 'mysql2'
 end
