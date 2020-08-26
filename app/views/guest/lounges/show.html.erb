@@ -77,7 +77,7 @@
 							<h4>レビュー本文</h4>
 							<div><%= f.text_area :explanation %></div>
 							<h4>レビュー画像</h4>
-							<h4><div><%= f.attachment_field :review_image %></div></h4>
+							<h4><div><%= f.attachment_field :review_image, :multiple => true %></div></h4>
 						<%= f.hidden_field :lounge_id, value: @lounge.id %>
 					 	<%= f.hidden_field :guest_id, value: @guest %>
 				<%= f.hidden_field :lounge_id, value: @lounge.id %>
